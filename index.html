@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#075985">
+<title>Manoram RO Water</title>
+<style>
+:root{--navy:#083b66;--blue:#087db5;--cyan:#22b8cf;--pale:#eaf8fc;--ink:#17324d;--muted:#647b8e;--line:#d7e8ef;--white:#fff;--green:#16865b;--orange:#b96b12}
+*{box-sizing:border-box}body{margin:0;background:#f3f9fc;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(115deg,#06365f,#087eaa);color:white;padding:22px max(18px,calc((100% - 1080px)/2));}
+.brand{display:flex;align-items:center;gap:13px}.logo{width:48px;height:48px;border-radius:15px;background:#ffffff20;display:grid;place-items:center;font-size:27px;border:1px solid #ffffff55}
+h1{font-size:clamp(22px,4vw,30px);margin:0}.tag{margin:5px 0 0;color:#d8f5ff;font-size:13px}
+main{max-width:1080px;margin:24px auto;padding:0 16px 40px}.hero{background:linear-gradient(120deg,#e0f7ff,#fff);border:1px solid #ccebf5;border-radius:20px;padding:25px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.hero h2{margin:0 0 8px;font-size:clamp(22px,4vw,30px);color:var(--navy)}.hero p{margin:0;color:#4d6c80;line-height:1.5}.drop{font-size:65px;opacity:.9}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 5px 20px #0b54700b}
+.card h3{margin:0 0 12px;color:var(--navy)}.muted{color:var(--muted);font-size:13px;line-height:1.5}
+label{display:block;font-weight:700;font-size:13px;margin:12px 0 5px}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #bfd6e1;border-radius:9px;font:inherit;background:#fff;color:var(--ink)}textarea{min-height:85px;resize:vertical}
+button{border:0;border-radius:9px;background:var(--blue);color:white;padding:11px 16px;font-weight:700;font-size:14px;cursor:pointer}button:hover{filter:brightness(.94)}button.secondary{background:#e9f5fa;color:var(--navy);border:1px solid var(--line)}button.danger{background:#b83b3b}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}.tab{background:#e5f2f7;color:var(--navy)}.tab.active{background:var(--navy);color:white}
+.hidden{display:none!important}.notice{padding:12px 14px;border-radius:10px;background:#fff7e8;border:1px solid #f1d7a8;color:#765016;font-size:13px;line-height:1.5;margin:14px 0}
+.success{padding:12px;background:#e9f8ef;border:1px solid #bce7cb;color:#17623c;border-radius:9px;margin-top:12px;font-size:14px}
+.error{color:#b42318;font-size:13px;margin-top:8px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}.stat{background:var(--pale);padding:14px;border-radius:12px}.stat small{display:block;color:var(--muted)}.stat strong{font-size:22px;color:var(--navy)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:10px 7px}th{color:var(--navy);background:#f2f9fc}
+.pill{display:inline-block;border-radius:20px;padding:4px 9px;font-size:11px;font-weight:bold;background:#fff0d7;color:#87530a}.pill.accepted{background:#e5f7ed;color:#17623c}.pill.rejected{background:#fdeaea;color:#9d2525}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:22px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{padding:20px}.drop{font-size:48px}.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">💧</div><div><h1>Manoram RO Water</h1><p class="tag">Pure water for your home and special occasions</p></div></div></header>
+<main>
+<section class="hero"><div><h2>Welcome to Manoram RO Water</h2><p>View your water jar account and send a booking request for weddings, parties and other functions.</p></div><div class="drop">💧</div></section>
+
+<section id="authView">
+ <div class="tabs"><button class="tab active" id="loginTab">Customer login</button><button class="tab" id="registerTab">Create account</button></div>
+ <div class="grid">
+  <div class="card" id="loginCard"><h3>Customer login</h3><p class="muted">Sign in to view your own account and booking requests.</p>
+   <form id="loginForm"><label>Mobile number</label><input id="loginPhone" type="tel" required maxlength="10" pattern="[0-9]{10}" placeholder="10-digit mobile number"><label>Password</label><input id="loginPass" type="password" required placeholder="Your password"><div class="actions"><button type="submit">Login</button></div><div id="loginError" class="error"></div></form>
+  </div>
+  <div class="card hidden" id="registerCard"><h3>Create customer account</h3><p class="muted">Register with your mobile number. Your account must be approved/connected by the business in the live version.</p>
+   <form id="registerForm"><label>Full name</label><input id="regName" required placeholder="Your name"><label>Mobile number</label><input id="regPhone" type="tel" required maxlength="10" pattern="[0-9]{10}" placeholder="10-digit mobile number"><label>Create password</label><input id="regPass" type="password" minlength="6" required placeholder="At least 6 characters"><div class="actions"><button type="submit">Create account</button></div><div id="registerMsg"></div></form>
+  </div>
+  <div class="card"><h3>Function water booking</h3><p class="muted">Customer login is required before submitting a booking request.</p><p>💧 Weddings<br>💧 Birthday parties<br>💧 Family functions<br>💧 Meetings and events</p><p class="muted">Submit your event date, location and estimated number of jars. The business will confirm availability.</p></div>
+ </div>
+ <div class="notice"><b>Demo preview:</b> This file demonstrates the website layout and browser-only sample account flow. It is not yet a secure live website. Real customer login, private records shared across devices, and owner-only controls require a hosted database and server-side authentication.</div>
+</section>
+
+<section id="customerView" class="hidden">
+ <div class="actions" style="justify-content:space-between"><div><h2 id="welcomeName" style="margin:0;color:var(--navy)">My account</h2><p class="muted">Your information is displayed in view-only mode.</p></div><button class="secondary" id="logoutBtn">Logout</button></div>
+ <div class="stats"><div class="stat"><small>Jars delivered</small><strong id="jarCount">—</strong></div><div class="stat"><small>Total paid</small><strong id="paidCount">—</strong></div><div class="stat"><small>Balance</small><strong id="balanceCount">—</strong></div></div>
+ <div class="grid"><div class="card"><h3>My delivery record</h3><p class="muted">Your monthly jar record will appear here when connected to the business database.</p><div id="recordArea" class="muted">No delivery records have been linked to this demo account.</div></div>
+ <div class="card"><h3>Book water for a function</h3><form id="bookingForm"><label>Function type</label><select id="eventType" required><option value="">Select function</option><option>Wedding</option><option>Birthday party</option><option>Religious function</option><option>Meeting</option><option>Other</option></select><label>Function date</label><input id="eventDate" type="date" required><label>Required number of jars</label><input id="jarQty" type="number" min="1" max="1000" required placeholder="Example: 50"><label>Delivery address</label><textarea id="eventAddress" required placeholder="Full delivery address"></textarea><label>Additional instructions (optional)</label><textarea id="eventNote" placeholder="Delivery time or other details"></textarea><div class="actions"><button type="submit">Submit booking request</button></div><div id="bookingMsg"></div></form></div></div>
+ <div class="card" style="margin-top:16px"><h3>My function booking requests</h3><div id="bookingList" class="muted">No booking requests yet.</div></div>
+</section>
+</main>
+<footer>Manoram RO Water · Customer portal preview</footer>
+<script>
+const KEY='manoram_ro_demo_accounts_v1', BOOK='manoram_ro_demo_bookings_v1';
+let current=null;
+const $=id=>document.getElementById(id);
+const getAccounts=()=>JSON.parse(localStorage.getItem(KEY)||'[]');
+const saveAccounts=a=>localStorage.setItem(KEY,JSON.stringify(a));
+const getBookings=()=>JSON.parse(localStorage.getItem(BOOK)||'[]');
+const saveBookings=b=>localStorage.setItem(BOOK,JSON.stringify(b));
+function showTab(which){$('loginCard').classList.toggle('hidden',which!=='login');$('registerCard').classList.toggle('hidden',which!=='register');$('loginTab').classList.toggle('active',which==='login');$('registerTab').classList.toggle('active',which==='register')}
+$('loginTab').onclick=()=>showTab('login');$('registerTab').onclick=()=>showTab('register');
+$('registerForm').onsubmit=e=>{e.preventDefault();let a=getAccounts(),phone=$('regPhone').value.trim();if(a.some(x=>x.phone===phone)){$('registerMsg').innerHTML='<div class="error">An account with this mobile number already exists.</div>';return}a.push({name:$('regName').value.trim(),phone,pass:$('regPass').value});saveAccounts(a);$('registerMsg').innerHTML='<div class="success">Demo account created. You can now log in on this browser.</div>';e.target.reset();showTab('login')};
+$('loginForm').onsubmit=e=>{e.preventDefault();let a=getAccounts().find(x=>x.phone===$('loginPhone').value.trim()&&x.pass===$('loginPass').value);if(!a){$('loginError').textContent='Mobile number or password is incorrect.';return}current=a;$('authView').classList.add('hidden');$('customerView').classList.remove('hidden');renderCustomer()};
+function renderCustomer(){$('welcomeName').textContent='Welcome, '+current.name;$('jarCount').textContent='—';$('paidCount').textContent='—';$('balanceCount').textContent='—';let mine=getBookings().filter(b=>b.phone===current.phone);$('bookingList').innerHTML=mine.length?'<table><thead><tr><th>Function</th><th>Date</th><th>Jars</th><th>Status</th></tr></thead><tbody>'+mine.map(b=>`<tr><td>${esc(b.type)}</td><td>${esc(b.date)}</td><td>${b.qty}</td><td><span class="pill">${esc(b.status)}</span></td></tr>`).join('')+'</tbody></table>':'No booking requests yet.'}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('bookingForm').onsubmit=e=>{e.preventDefault();let b=getBookings();b.push({phone:current.phone,type:$('eventType').value,date:$('eventDate').value,qty:Number($('jarQty').value),address:$('eventAddress').value,note:$('eventNote').value,status:'Pending'});saveBookings(b);$('bookingMsg').innerHTML='<div class="success">Demo request saved in this browser. In the live website, this will be sent to the business owner for confirmation.</div>';e.target.reset();renderCustomer()};
+$('logoutBtn').onclick=()=>{current=null;$('customerView').classList.add('hidden');$('authView').classList.remove('hidden');$('loginForm').reset()};
+$('eventDate').min=new Date().toISOString().slice(0,10);
+</script>
+</body></html>
